@@ -1,0 +1,12 @@
+footer {
+    width: 100%;
+    font-size: 1.6rem;
+    height: 12.5vh;
+    background-color: #3CC47C;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #ddd;
+    margin-top: 50px;
+}
+

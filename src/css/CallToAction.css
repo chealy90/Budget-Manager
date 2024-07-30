@@ -1,0 +1,38 @@
+#callToAction {
+    width: 100%;
+    background-color: #eee;
+    padding: 40px 12%;   
+    text-align: left;
+    color: #1E392A;
+    min-height: 500px;
+
+}
+
+#callToAction h2 {
+    font-size: 3.75rem;
+}
+
+#callToAction p {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    margin-block: 50px;
+}
+
+#callToAction ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    margin-block: 70px 30px;
+}
+
+#callToAction ul li {
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    margin-inline: 60px;
+}
+
+#callToAction ul li span {
+    margin-left: 20px;
+    font-weight: bold;
+}

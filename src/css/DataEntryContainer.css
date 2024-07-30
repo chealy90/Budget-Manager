@@ -1,0 +1,86 @@
+.dataEntryContainer {
+    width: 35%;
+    background-color: #eee;
+    min-height: 400px;
+    color: #1E392A; 
+    font-size: 1.4rem;
+    padding: 25px 40px;
+    border-radius: 15px;
+}
+
+.dataEntryContainer h3{
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.dataEntryContainer > p {
+    font-size: 1.4rem;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.dataInputContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+.dataInputContainer > div {
+    width: 60%;
+}
+
+.formElement {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-block: 10px;
+}
+
+.formElement label {
+    margin-bottom: 5px;
+}
+
+.formElement input {
+    width: 100%;
+    height: 2rem;
+    border-radius: 15px;
+    outline: none;
+    border: 1px solid lightgrey;
+    padding: 5px 20px;
+    font-size: 1rem;
+}
+
+.formElement input:focus-visible {
+    border: 1px solid #141414;
+}
+
+.dataInputContainer button {
+    width: 200px;
+    height: 3.5rem;
+    background-color: #3CC47C;
+    color: #eee;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid #3CC47C;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.dataInputContainer button:hover {
+    color: #3CC47C;
+    background-color: #eee;
+    cursor: pointer;
+}
+
+.currencyInput::before {
+    content: "€";
+    font-size: 2rem;
+    position: absolute;
+    display: block;
+    top: -20;
+    left: -20;
+    color: black;
+    float: left;
+
+}

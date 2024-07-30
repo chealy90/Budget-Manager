@@ -1,0 +1,28 @@
+.dataEntryItem {
+    width: 80%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: auto;
+}
+
+.dataEntryItem span {
+    display: flex;
+    width: 70%;
+    justify-content: space-between;
+    margin-left: 10px;
+}
+
+.dataEntryItem button {
+    border: none;
+    outline: none;
+    background-color: #eee;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 2.5px;
+}
+
+.dataEntryItem button:hover {
+    transform: scale(1.7);
+
+}
