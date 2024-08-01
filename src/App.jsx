@@ -9,16 +9,25 @@ import { useState } from "react"
 function App() {
   const [incomeObject, setIncomeObject] = useState([])
   const [expensesObject, setExpensesObject] = useState([])
+  const [totalsByCategory, setTotalsByCategory] = useState({household: 0, food: 0, transportation: 0, bills: 0, discretionary: 0, other: 0})
+  const [useCategories, setUseCategories] = useState(true)
+
   return (
     <>
       <Header />
       <CallToAction />
-      <Summary incomeObject={incomeObject} expensesObject={expensesObject} />
+      <Summary incomeObject={incomeObject}
+                expensesObject={expensesObject}
+                totalsByCategory={totalsByCategory}
+                useCategories={useCategories}
+                setUseCategories={setUseCategories}/>
       
       <MainSection setIncomeObject={setIncomeObject} 
                    setExpensesObject={setExpensesObject}
                    incomeObject={incomeObject}
-                   expensesObject={expensesObject}/>
+                   expensesObject={expensesObject}
+                   setTotalsByCategory={setTotalsByCategory}/>
+                   
       <Footer />
     </>
   )

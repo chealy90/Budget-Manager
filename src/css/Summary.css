@@ -55,3 +55,66 @@
     width: 80%;
     color: rgb(189, 15, 15);
 }
+
+#checkBoxLabel {
+    width: 150px;
+    height: 40px;
+    display: inline-block;
+    background-color: #ccc;
+    border-radius: 20px;
+    position: relative;
+}
+
+#sliderContent {
+    font-size: 1rem;
+    transition: ease 0.4s;
+}
+
+#chartCheckbox {
+    display: none;
+}
+
+#sliderContent:hover {
+    cursor: pointer;
+}
+
+#sliderContent:before {
+    width: 120px;
+    height: 40px;
+    text-wrap: nowrap;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    background-color: #eee;
+    color: black;
+    visibility: visible;
+    content: "By Items";
+    padding-top: 8px;
+    padding-left: 25px;
+    border-radius: 20px;
+    transition: ease-in-out 0.5s;
+    
+
+}
+
+
+#chartCheckbox:checked ~ #sliderContent:before {
+    width: 120px;
+    height: 40px;   
+    text-wrap: nowrap   ;
+    position: absolute;
+    top: 0px;
+    left: 30px;
+    color: black;
+    visibility: visible;
+    content: "By Category";
+    padding-top: 8px;
+    padding-left: 18px;
+    border-radius: 20px;
+    transition: ease-in-out 0.5s;
+}
+
+
+
+
+

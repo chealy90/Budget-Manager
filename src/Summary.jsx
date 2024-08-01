@@ -3,8 +3,7 @@ import { Pie } from "react-chartjs-2"
 import { Chart as ChartJS,
     Tooltip,
     Legend,
-    ArcElement, 
-    elements} from "chart.js"
+    ArcElement} from "chart.js"
 
 ChartJS.register(
     Tooltip,
@@ -17,17 +16,10 @@ ChartJS.register(
 
 
 
-function Summary({incomeObject, expensesObject}){
+function Summary({incomeObject, expensesObject, totalsByCategory, useCategories, setUseCategories}){
     let totalIncome = 0
     let totalExpense = 0
-    /*
-    const colors = ["#9BBFE0",
-                    "#E8A09A",
-                    "#FBE29F",
-                    "#C6D68F"
-    ]
-    */
-
+    
     const colors = [
         "#93F03B",
         "#ffec21",
@@ -36,8 +28,49 @@ function Summary({incomeObject, expensesObject}){
         "#F54F52",
         "#9552EA"
     ]
+
+
+    function createDataByItemArray(){
+        let labelsArray = []
+        let dataArray = []
+        let colorsArray = []
+
+        
+        //add datapoints
+        expensesObject.forEach((item, i) => {
+            labelsArray.push(item.desc)
+            dataArray.push(item.value)
+            colorsArray.push(colors[i % colors.length])
+            
+            console.log(i % colors.length) 
+
+        })
+        return [labelsArray, dataArray, colorsArray]
+
+    }
+
+    function createDataByCategoryArray(){
+        let labelsArray = []
+        let dataArray = []
+        let colorsArray = []
+
+        let keys = Object.keys(totalsByCategory)
+        keys.forEach((key, i)=> {
+            if (totalsByCategory[key]!==0){
+                labelsArray.push(key)
+                dataArray.push(totalsByCategory[key])
+                colorsArray.push(colors[i % colors.length])
+            }
+            
+        })  
+
+        return [labelsArray, dataArray, colorsArray]
+
+    }
+
     
     
+    //calculate totals
     incomeObject.forEach(item => {
         totalIncome += parseFloat(item.value)
     })
@@ -122,25 +155,15 @@ function Summary({incomeObject, expensesObject}){
     else {
         const leftover = totalIncome - totalExpense
         const percentOver = leftover / totalIncome * 100
-        let labelsArray = []
-        let dataArray = []
-        let colorsArray = []
-        //add datapoints
-        console.log("---")
-        expensesObject.forEach((item, i) => {
-            labelsArray.push(item.desc)
-            dataArray.push(item.value)
-            colorsArray.push(colors[i % colors.length])
-            
-            console.log(i % colors.length) 
-
-        })
-
+          
+        //create data for arrays for pie chart
+        let [labelsArray, dataArray, colorsArray] = useCategories ? createDataByCategoryArray() : createDataByItemArray()
 
         //add space for the leftover money 
         labelsArray.push("Leftover")
         dataArray.push(leftover)
         colorsArray.push("#eee")
+        
 
         const pieChartData = {
             labels: labelsArray,
@@ -162,27 +185,21 @@ function Summary({incomeObject, expensesObject}){
                 }
             }
         }
-
-       
-        /*
-        console.log(labelsArray)
-        console.log(dataArray)
-        
-        */
-
-        console.log(colorsArray)
-
-
         
         return <div id="summary">
                     <div id="summaryKeyInfo">
+
                         <div className="keyInfoLine"><p>Income:</p><p>€{totalIncome}</p></div>
                         <div className="keyInfoLine"><p>Expenditure:</p><p>€{totalExpense}</p></div>
                         <div className="keyInfoLine"><p>Leftover Income:</p><p>€{leftover}</p></div>
 
                     </div>
                     <div id="chartContainer">
-                    <   p>{percentOver.toFixed(2)}% of income left over.</p>
+                        <label htmlFor="chartCheckbox" id="checkBoxLabel">
+                            <input type="checkbox" name="chartCheckbox" id="chartCheckbox" checked={useCategories} onChange={()=>setUseCategories(!useCategories)}/>
+                            <div id="sliderContent"></div>
+                        </label>
+                        <p>{percentOver.toFixed(2)}% of income left over.</p>
                         <Pie id="" data={pieChartData} />
 
                     </div>
