@@ -1,11 +1,13 @@
 import "./css/DataEntryItem.css"
 
-function DataEntryItem(props){
+
+
+function DataEntryItem({ key, id, desc, value, deleteItem, category}){
     return <div className="dataEntryItem">
-                <button onClick={() => {props.deleteItem(props.id, props.value)}} type="button">X</button>
+                <button onClick={() => {deleteItem(id, value, category)}} type="button">X</button>
                 <span>
-                    <p>{props.desc}</p>
-                    <p>{props.value}</p>
+                    <p>{desc}<label className="categoryLabel">{category===null? "" : ` (${category})`}</label></p>
+                    <p>{value}</p>
                 </span>
 
                 

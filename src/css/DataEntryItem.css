@@ -6,11 +6,21 @@
     margin: auto;
 }
 
+.dataEntryItem:hover span > p > .categoryLabel{
+    display: inline;
+}
+
 .dataEntryItem span {
     display: flex;
     width: 70%;
     justify-content: space-between;
+    align-items: center;
     margin-left: 10px;
+}
+
+.dataEntryItem span p {
+    display: flex;
+    align-items: center;
 }
 
 .dataEntryItem button {
@@ -24,5 +34,11 @@
 
 .dataEntryItem button:hover {
     transform: scale(1.7);
-
 }
+
+.categoryLabel {    
+    display: none;
+    font-size: 0.9rem;
+    margin-left: 10px;
+}
+

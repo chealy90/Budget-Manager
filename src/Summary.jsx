@@ -41,8 +41,6 @@ function Summary({incomeObject, expensesObject, totalsByCategory, useCategories,
             labelsArray.push(item.desc)
             dataArray.push(item.value)
             colorsArray.push(colors[i % colors.length])
-            
-            console.log(i % colors.length) 
 
         })
         return [labelsArray, dataArray, colorsArray]
@@ -54,6 +52,8 @@ function Summary({incomeObject, expensesObject, totalsByCategory, useCategories,
         let dataArray = []
         let colorsArray = []
 
+
+        console.log(totalsByCategory)
         let keys = Object.keys(totalsByCategory)
         keys.forEach((key, i)=> {
             if (totalsByCategory[key]!==0){
@@ -63,6 +63,8 @@ function Summary({incomeObject, expensesObject, totalsByCategory, useCategories,
             }
             
         })  
+        console.log(colorsArray)
+        console.log(dataArray)
 
         return [labelsArray, dataArray, colorsArray]
 

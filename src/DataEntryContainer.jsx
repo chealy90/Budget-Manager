@@ -7,10 +7,10 @@ import TotalLine from "./TotalLine"
 
 
 
-function DataEntryContainer(props) {
+function DataEntryContainer({ title, datatype, updater, array, setTotalsByCategory}) {
     const [descInputValue, setDescInputValue] = useState("")
     const [valueInputValue, setValueInputValue] = useState("")
-    const [catInputValue, setCatInputValue] = useState("")
+    const [catInputValue, setCatInputValue] = useState("other")
     
     const [total, setTotal] = useState(0)
 
@@ -19,7 +19,7 @@ function DataEntryContainer(props) {
 
     const categoryJSX = <div className="formElement">
                             <label htmlFor="catValue">Category (optional):</label>
-                            <select name="catValue" id="catInput" onChange={updateCategory}>
+                            <select name="catValue" id="catInput" value={catInputValue} onChange={updateCategory}>
                                 <option value="other">Select</option>
                                 <option value="household">Household / Accomodation</option>
                                 <option value="food">Food</option>
@@ -31,72 +31,82 @@ function DataEntryContainer(props) {
                         </div>
 
     
-    
-
     function createNewItem(){
-        let newDesc = document.getElementById("dataDesc" + props.datatype).value
-        let newVal = document.getElementById("dataValue" + props.datatype).value
-        let newCat  = document.getElementById("catInput").value
-        console.log(newVal)
-        
-
-
-
-
+        console.log(catInputValue)
         //validation
-        if (newDesc.length < 3) {
+        if (descInputValue.length < 3) {
             window.alert("Descriptions must be at least three characters long.")
             return
         }
-        if (!/^-?\d+$/.test(newVal)){
+        if (!/^-?\d+$/.test(valueInputValue)){
             window.alert("Please enter a valid monetary amount.")
             return
         }
-        else if (newVal === "0" || newVal === ""){
+        else if (valueInputValue === "0" || valueInputValue === ""){
             window.alert("Please enter a validate monetary amount. Amounts must be greater than 0.")
             return
+        }
+
+        else if (parseFloat(valueInputValue) < 0){
+            window.alert("Please enter a value greater than 0.")
         }
         
 
         //create entry
-        props.updater(currentEntries => {
+        updater(currentEntries => {
             
-            return [...currentEntries, {id: crypto.randomUUID(),desc: newDesc, value: newVal}]
+            return [...currentEntries, {id: crypto.randomUUID(),desc: descInputValue, value: valueInputValue, category: catInputValue}]
         })  
 
         //update totals by category
-        if (props.datatype === "expenditure"){
-            props.setTotalsByCategory(current => {
-                console.log(current)
+        if (datatype === "expenditure"){
+            setTotalsByCategory(current => {
+                let keys = Object.keys(current)
+
+                let newObject = {}
+                console.log(catInputValue)
+                keys.forEach(key => {
+
+                    if (key===catInputValue){
+                        newObject[key] = parseFloat(current[key]) + parseFloat(valueInputValue)
+                    } else {
+                        newObject[key] = parseFloat(current[key])
+                    }
+                })
+                console.log(newObject)
+                return newObject
+            })
+        }
+
+        setDescInputValue("")
+        setValueInputValue("")
+        setCatInputValue(current => "other")
+        setTotal(current => current + parseFloat(valueInputValue))
+
+        
+    }
+
+    function deleteItem(id, value, category){
+        //delete from items
+        updater(current => current.filter(item => item.id !== id))
+        setTotal(current => current - value)
+
+        //delete from category totals
+        if (datatype === "expenditure"){
+            setTotalsByCategory(current => {
                 let keys = Object.keys(current)
 
                 let newObject = {}
                 keys.forEach(key => {
-                    console.log(key)
-                    if (key===newCat){
-                        newObject[key] = parseFloat(current[key]) + parseFloat(newVal)
+                    if (key===category){
+                        newObject[key] = parseFloat(current[key]) - parseFloat(value)
                     } else {
-                        newObject[key] = current[key]
+                        newObject[key] = parseFloat(current[key])
                     }
                 })
                 return newObject
             })
         }
-        
-
-        console.log()
-
-        setDescInputValue("")
-        setValueInputValue("")
-        setTotal(current => current + parseFloat(newVal))
-
-        
-    }
-
-    function deleteItem(id, value){
-
-        props.updater(current => current.filter(item => item.id !== id))
-        setTotal(current => current - value)
     }
 
     function updateCategory(){
@@ -105,27 +115,27 @@ function DataEntryContainer(props) {
 
 
     return <div className="dataEntryContainer">
-                <h3>{props.title}</h3>
-                <p>Enter sources of {props.datatype} to add them to your budget</p>
+                <h3>{title}</h3>
+                <p>Enter sources of {datatype} to add them to your budget</p>
 
                 <div className="dataContainer">
-                    {props.array.map(entry => {return (<DataEntryItem key={entry.id} id={entry.id} desc={entry.desc} value={entry.value} deleteItem={deleteItem}/>)})}
-                    {props.array.length === 0 ? "" : (<TotalLine total={total} />)}
+                    {array.map(entry => {return (<DataEntryItem key={entry.id} id={entry.id} desc={entry.desc} value={entry.value} deleteItem={deleteItem} category={datatype === "expenditure" ? entry.category : null}/>)})}
+                    {array.length === 0 ? "" : (<TotalLine total={total} />)}
                 </div>
 
                 <div className="dataInputContainer">
                     <div>
                         <div className="formElement">
-                            <label htmlFor="dataName">Description of {props.datatype}:</label>
-                            <input type="text" name="dataName" id={"dataDesc" + props.datatype} value={descInputValue} onChange={e => setDescInputValue(e.target.value)}/>
+                            <label htmlFor="dataName">Description of {datatype}:</label>
+                            <input type="text" name="dataName" id={"dataDesc" + datatype} value={descInputValue} onChange={e => setDescInputValue(e.target.value)}/>
                         </div>
                         <div className="formElement">
                             <label htmlFor="dataValue">Amount: </label>
-                            <input type="text" class="currencyInput" name="dataName" id={"dataValue" + props.datatype} value={valueInputValue} onChange={e => setValueInputValue(e.target.value)}/>
+                            <input type="text" class="currencyInput" name="dataName" id={"dataValue" + datatype} value={valueInputValue} onChange={e => setValueInputValue(e.target.value)}/>
                         </div>
                         
                         
-                        {props.datatype==="expenditure" ? categoryJSX : ""}
+                        {datatype==="expenditure" ? categoryJSX : ""}
                         
                     </div>
                     <button type="button" onClick={createNewItem}>Add</button>  
