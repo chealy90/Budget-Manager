@@ -1,7 +1,7 @@
 #callToAction {
     width: 100%;
     background-color: #eee;
-    padding: 40px 12%;   
+    padding: 40px 12%;
     text-align: left;
     color: #1E392A;
     min-height: 500px;
@@ -22,7 +22,7 @@
     list-style: none;
     display: flex;
     justify-content: flex-start;
-    margin-block: 70px 30px;
+    margin: 60px 30px;
 }
 
 #callToAction ul li {
@@ -35,4 +35,105 @@
 #callToAction ul li span {
     margin-left: 20px;
     font-weight: bold;
+    text-wrap: nowrap;
+}
+
+
+@media screen and (max-width: 1500px) {
+    #callToAction {
+        padding: 40px 5%;
+
+    }
+
+    #callToAction ul li {
+        margin-inline: 30px;
+    }
+
+    #callToAction ul {
+        margin: 60px 0;
+    }
+}
+
+@media screen and (max-width: 1250px) {
+    #callToAction ul li {
+        margin-inline: 20px;
+    }
+
+    #callToAction ul li span {
+        margin-left: 8px;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    #callToAction ul {
+        flex-direction: column;
+    }
+
+    #callToAction ul li {
+        margin-block: 20px;
+        margin-left: 50px;
+        font-size: 1.5rem;
+    }
+
+    #callToAction ul li span {
+        margin-left: 40px;
+    }
+
+    #callToAction ul li:first-of-type span {
+        margin-left: 30px;
+
+    }
+}
+
+@media screen and (max-width: 750px) {
+    #callToAction h2 {
+        font-size: 3.2rem;
+    }
+
+    #callToAction .fa-2x {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #callToAction h2 {
+        font-size: 2.25rem;
+        margin-block: 10px 50px;
+    }
+
+    #callToAction p {
+        font-size: 1.2rem;
+    }
+
+    #callToAction ul li {
+        margin-inline: 0px;
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 400px){
+    #callToAction {
+        padding-bottom: 20px;
+    }
+
+    #callToAction ul {
+        margin-bottom: 20px;
+    }
+
+
+    #callToAction ul li {
+        font-size: 0.9rem;
+    }
+
+    #callToAction ul li:first-of-type span {
+        margin-left: 15px;
+    }
+
+    #callToAction ul li span {
+        margin-left: 20px;
+    }
+
+    #callToAction ul li > .fa-2x {
+        font-size: 1.8rem;
+    }
 }

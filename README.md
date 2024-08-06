@@ -10,6 +10,6 @@ The site allows users to add incomes / expenses. They can view the totals of the
 Users have the option to add categories to their expenses to allow them to track their spending across these categories rather than as individual items.
 
 
-
+--todo - responsiveness
 
 

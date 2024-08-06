@@ -19,6 +19,18 @@
     margin-bottom: 30px;
 }
 
+
+
+
+.dataContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+}
+
+
+
 .dataInputContainer {
     display: flex;
     justify-content: space-between;
@@ -29,6 +41,8 @@
 .dataInputContainer > div {
     width: 60%;
 }
+
+
 
 .formElement {
     display: flex;
@@ -77,6 +91,7 @@
     border: 1px solid #3CC47C;
     font-size: 1.4rem;
     font-weight: bold;
+    margin-block: 20px;
 }
 
 .dataInputContainer button:hover {
@@ -95,4 +110,72 @@
     color: black;
     float: left;
 
+}
+
+
+@media screen and (max-width: 1700px){
+    .dataEntryContainer {
+        width: 45%; 
+    }
+}
+
+@media screen and (max-width: 1350px){
+    .dataEntryContainer {
+        padding: 10px 20px;
+    }
+
+    .dataInputContainer {
+        flex-direction: column;
+
+    }
+
+    .dataInputContainer > div {
+        width: 95%;
+    }
+
+    
+
+   
+}
+
+@media screen and (max-width: 1000px){
+    .dataEntryContainer {   
+        width: 90%;
+        flex-direction: row;
+
+        margin: 40px auto;
+        padding-block: 30px;
+    }
+
+    .dataContainer {
+        width: 80%;
+        margin: auto;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .dataEntryContainer {
+        font-size: 0.9rem;
+    }
+
+    .dataEntryContainer h3{
+        font-size: 2rem;
+    }
+
+    .dataEntryContainer p {
+        font-size: 1rem;
+    }
+
+    .dataContainer {
+        width: 90%;
+        margin: auto;
+    }
+
+    .dataInputContainer {
+        font-size: 1rem;
+    }
+
+    .dataInputContainer .formElement #catInput {
+        font-size: 1rem;
+    }
 }

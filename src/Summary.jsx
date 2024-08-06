@@ -114,7 +114,7 @@ function Summary({incomeObject, expensesObject, totalsByCategory, useCategories,
                     </div>
                     <div id="chartContainer">
                         <p>{percentOver.toFixed(2)}% of income left over.</p>
-                        <Pie id="" options={[]} data={pieChartData} />
+                        <Pie id="piechart" options={[]} data={pieChartData} />
 
                     </div>
                     
@@ -146,7 +146,7 @@ function Summary({incomeObject, expensesObject, totalsByCategory, useCategories,
                     </div>
                     <div id="chartContainer">
                         <p class="pie-warning">Current Expenses greater than income!</p>
-                        <Pie id="" options={[]} data={pieChartData} />
+                        <Pie id="piechart" options={[]} data={pieChartData} />
 
                     </div>
                     
@@ -202,7 +202,7 @@ function Summary({incomeObject, expensesObject, totalsByCategory, useCategories,
                             <div id="sliderContent"></div>
                         </label>
                         <p>{percentOver.toFixed(2)}% of income left over.</p>
-                        <Pie id="" data={pieChartData} />
+                        <Pie id="piechart" data={pieChartData} />
 
                     </div>
                     

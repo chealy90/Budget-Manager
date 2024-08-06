@@ -1,9 +1,9 @@
 .dataEntryItem {
-    width: 80%;
+    width: 60%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: flex-end;
     align-items: center;
-    margin: auto;
+    margin-inline: auto;
 }
 
 .dataEntryItem:hover span > p > .categoryLabel{
@@ -12,7 +12,7 @@
 
 .dataEntryItem span {
     display: flex;
-    width: 70%;
+    width: 80%;
     justify-content: space-between;
     align-items: center;
     margin-left: 10px;
@@ -41,4 +41,46 @@
     font-size: 0.9rem;
     margin-left: 10px;
 }
+
+
+@media screen and (max-width: 1400px){
+    .dataEntryItem span {
+        width: 90%;
+    }   
+}
+
+
+@media screen and (max-width: 1350px){
+    .dataEntryItem {
+        justify-content: flex-end;
+        align-items: center;
+        
+    }
+}
+
+
+@media screen and (max-width: 1300px){
+    .dataEntryItem {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 1000px){
+    .dataEntryItem {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 800px){
+    .dataEntryItem {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .dataEntryItem {
+        width: 95%;
+    }
+}
+
 
