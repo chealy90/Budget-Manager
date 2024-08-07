@@ -6,6 +6,7 @@ import Footer from './Footer'
 import { useState } from "react"
 
 
+
 function App() {
   const [incomeObject, setIncomeObject] = useState([])
   const [expensesObject, setExpensesObject] = useState([])

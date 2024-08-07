@@ -1,6 +1,7 @@
 import "./css/DataEntryContainer.css"
 import DataEntryItem from "./DataEntryItem"
 import { useState } from "react"
+import PropTypes from "prop-types"
 import TotalLine from "./TotalLine"
 
 
@@ -32,7 +33,6 @@ function DataEntryContainer({ title, datatype, updater, array, setTotalsByCatego
 
     
     function createNewItem(){
-        console.log(catInputValue)
         //validation
         if (descInputValue.length < 3) {
             window.alert("Descriptions must be at least three characters long.")
@@ -64,16 +64,13 @@ function DataEntryContainer({ title, datatype, updater, array, setTotalsByCatego
                 let keys = Object.keys(current)
 
                 let newObject = {}
-                console.log(catInputValue)
                 keys.forEach(key => {
-
                     if (key===catInputValue){
                         newObject[key] = parseFloat(current[key]) + parseFloat(valueInputValue)
                     } else {
                         newObject[key] = parseFloat(current[key])
                     }
                 })
-                console.log(newObject)
                 return newObject
             })
         }
@@ -141,6 +138,14 @@ function DataEntryContainer({ title, datatype, updater, array, setTotalsByCatego
                     <button type="button" onClick={createNewItem}>Add</button>  
                 </div>
             </div>
+}
+
+DataEntryContainer.propTypes = {
+    title: PropTypes.string,
+    datatype: PropTypes.string,
+    updater: PropTypes.func,
+    array: PropTypes.array,
+    setTotalsByCategory: PropTypes.func
 }
 
 export default DataEntryContainer

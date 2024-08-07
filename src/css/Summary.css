@@ -46,7 +46,7 @@
 
 
 #piechart {
-    height: 90%;
+    max-width: 400px;
 }
 
 .pie-warning {
@@ -146,6 +146,10 @@
 
     #summary #summaryKeyInfo {
         font-size: 1.6rem;
+    }
+
+    #piechart {
+        max-width: 350px;
     }
 }
 

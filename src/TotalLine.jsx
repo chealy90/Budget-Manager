@@ -1,4 +1,5 @@
 import "./css/TotalLine.css"
+import PropTypes from "prop-types"
 
 function TotalLine({total}){
     return <div class="totalLine">
@@ -6,5 +7,11 @@ function TotalLine({total}){
                 <p>€{total}</p>
             </div>
 }
+
+TotalLine.propTypes = {
+    total: PropTypes.number
+}
+
+
 
 export default TotalLine

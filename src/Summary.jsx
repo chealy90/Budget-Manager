@@ -5,6 +5,8 @@ import { Chart as ChartJS,
     Legend,
     ArcElement} from "chart.js"
 
+import PropTypes from "prop-types"
+
 ChartJS.register(
     Tooltip,
     Legend,
@@ -53,7 +55,6 @@ function Summary({incomeObject, expensesObject, totalsByCategory, useCategories,
         let colorsArray = []
 
 
-        console.log(totalsByCategory)
         let keys = Object.keys(totalsByCategory)
         keys.forEach((key, i)=> {
             if (totalsByCategory[key]!==0){
@@ -63,9 +64,6 @@ function Summary({incomeObject, expensesObject, totalsByCategory, useCategories,
             }
             
         })  
-        console.log(colorsArray)
-        console.log(dataArray)
-
         return [labelsArray, dataArray, colorsArray]
 
     }
@@ -211,6 +209,14 @@ function Summary({incomeObject, expensesObject, totalsByCategory, useCategories,
 
     
 
+}
+
+Summary.propTypes = {
+    incomeObject: PropTypes.array,
+    expensesObject: PropTypes.array,
+    totalsByCategory: PropTypes.object,
+    useCategories: PropTypes.bool,
+    setUseCategories: PropTypes.func
 }
 
 export default Summary

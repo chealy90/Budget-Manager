@@ -1,8 +1,9 @@
 import "./css/DataEntryItem.css"
+import PropTypes from "prop-types"
 
 
 
-function DataEntryItem({ key, id, desc, value, deleteItem, category}){
+function DataEntryItem({ id, desc, value, deleteItem, category}){
     return <div className="dataEntryItem">
                 <button onClick={() => {deleteItem(id, value, category)}} type="button">X</button>
                 <span>
@@ -14,6 +15,12 @@ function DataEntryItem({ key, id, desc, value, deleteItem, category}){
 
             </div>
 
+}
+
+DataEntryItem.propTypes = {
+    id: PropTypes.string,
+    desc: PropTypes.string,
+    deleteItem: PropTypes.func
 }
 
 export default DataEntryItem
